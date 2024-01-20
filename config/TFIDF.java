@@ -1,3 +1,4 @@
+package config;
 // WordCount.java
 
 import java.io.IOException;

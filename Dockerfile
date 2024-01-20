@@ -42,7 +42,8 @@ RUN mv /tmp/ssh_config ~/.ssh/config && \
     mv /tmp/slaves $HADOOP_HOME/etc/hadoop/slaves && \
     mv /tmp/start-hadoop.sh ~/start-hadoop.sh && \
     mv /tmp/run-wordcount.sh ~/run-wordcount.sh && \
-    mv /tmp/run-tfidf.sh ~/run-tfidf.sh 
+    mv /tmp/run-tfidf.sh ~/run-tfidf.sh && \
+    mv /tmp/TFIDF.java ~/TFIDF.java 
 
 RUN chmod +x ~/start-hadoop.sh && \
     chmod +x ~/run-wordcount.sh && \
