@@ -1,11 +1,16 @@
-FROM ubuntu:14.04
-
-MAINTAINER KiwenLau <kiwenlau@gmail.com>
+FROM ubuntu:16.04
 
 WORKDIR /root
 
+# Add Ubuntu 14.04 (Trusty Tahr) repositories for openjdk-7-jdk
+RUN echo "deb http://security.ubuntu.com/ubuntu trusty main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse" >> /etc/apt/sources.list
+
 # install openssh-server, openjdk and wget
-RUN apt-get update && apt-get install -y openssh-server openjdk-7-jdk wget
+RUN apt-get update 
+RUN apt-get install -y openssh-server
+RUN apt-get install -y wget
+RUN apt-get install -y tzdata=2019a-0ubuntu0.14.04 tzdata-java initscripts openjdk-7-jre-headless openjdk-7-jre openjdk-7-jdk  
 
 # install hadoop 2.7.2
 RUN wget https://github.com/kiwenlau/compile-hadoop/releases/download/2.7.2/hadoop-2.7.2.tar.gz && \
@@ -36,10 +41,12 @@ RUN mv /tmp/ssh_config ~/.ssh/config && \
     mv /tmp/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml && \
     mv /tmp/slaves $HADOOP_HOME/etc/hadoop/slaves && \
     mv /tmp/start-hadoop.sh ~/start-hadoop.sh && \
-    mv /tmp/run-wordcount.sh ~/run-wordcount.sh
+    mv /tmp/run-wordcount.sh ~/run-wordcount.sh && \
+    mv /tmp/run-tfidf.sh ~/run-tfidf.sh 
 
 RUN chmod +x ~/start-hadoop.sh && \
     chmod +x ~/run-wordcount.sh && \
+    chmod +x ~/run-tfidf.sh && \
     chmod +x $HADOOP_HOME/sbin/start-dfs.sh && \
     chmod +x $HADOOP_HOME/sbin/start-yarn.sh 
 
