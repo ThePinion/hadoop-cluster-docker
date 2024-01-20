@@ -14,7 +14,7 @@ hadoop fs -mkdir -p input
 hdfs dfs -put ./input/* input
 
 # compile TFIDF.java and create a jar
-hadoop ???Main TFIDF.java
+javac -cp $(hadoop classpath) TFIDF.java
 jar cf tfidf.jar TFIDF*.class
 
 # run TFIDF
