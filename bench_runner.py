@@ -71,44 +71,6 @@ def run_benchmark(cluster: int, data_size: int, mapps: int, reduces: int) -> (in
         file.write(output)
     return times
 
-def generate_random_string(length):
-    letters = string.ascii_lowercase
-    return ''.join(random.choice(letters) for i in range(length))
-
-def populate_with_random_text(dest_dir, max_size_mb: int):
-    if not os.path.exists(dest_dir):
-        os.makedirs(dest_dir)
-    max_size = max_size_mb * 1024 * 1024
-    total_size = 0
-    i = 0
-    while total_size < max_size:
-        filename = f"{dest_dir}/file_{i}.txt"
-        with open(filename, 'w') as file:
-            for _ in range(100):
-                file.write(generate_random_string(7) + "\n")
-        total_size += os.path.getsize(filename)
-        i += 1
-            
-
-def run_random_benchmark(cluster: int, data_size: int) -> (int, int, int):
-    print(f"Running random benchmark with size {data_size} MB...")
-    resize_cluster(cluster)
-    reset_dir(BOOKS_TEMP_DIR)
-    populate_with_random_text(BOOKS_TEMP_DIR, data_size)
-    result = subprocess.run([SCRIPT_PATH, str(0), str(0)], stdout=subprocess.PIPE, text=True)
-    print(f"Finished random benchmark with size {data_size} MB!")
-    output = result.stdout
-    times = parse_times(output)
-    if times is None:
-        print("Error parsing output")
-        return
-    else:
-        print(f"Times: {times}")
-        print(f"Total: {sum(times)/1000} s")
-    with open(f"logs/random_{cluster}_{data_size}_log.txt", 'w') as file:
-        file.write(output)
-    return times
-
 def append_to_bench(name: str, columns: str, values, ):
     file_path = f"benchs/{name}_bench.txt"
     if not os.path.exists(file_path):
@@ -121,24 +83,23 @@ def check_cluster_size():
     for i in [6, 4, 2]:
         for size in [1, 10, 45, 90]:
             result = run_benchmark(i, size, 0, 0)
-            append_to_bench("check_cluster", "slaves, mb, mstf, msdf, mstfidf", (i-1, size, *result))
+            append_to_bench("check_cluster", "slaves,\t mb,\t mstf,\t msdf,\t mstfidf", (i-1, size, *result))
 
 def check_mapp_red():
     for m in [5, 25, 250]:
         for r in [1, 2, 8, 16]:
             result = run_benchmark(6, 10, m, r)
-            append_to_bench("check_map_red_n", "mapps, reduces, mstf, msdf, mstfidf", (m, r, *result))
+            append_to_bench("check_map_red_n", "mapps,\t reduces,\t mstf,\t msdf,\t mstfidf", (m, r, *result))
 
 def check_data_size():
     for size in range(10, 91, 10):
         result = run_benchmark(6, size, 0, 0)
-        append_to_bench("check_data_size", "mb, mstf, msdf, mstfidf", (size, *result))
+        append_to_bench("check_data_size", "mb,\t mstf,\t msdf,\t mstfidf", (size, *result))
 
 def main():
     check_cluster_size()
     check_mapp_red()
     check_data_size()
-    # populate_with_random_text(BOOKS_TEMP_DIR, 1)
 
 if __name__ == "__main__":
     main()
