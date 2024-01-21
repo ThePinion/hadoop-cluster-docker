@@ -4,7 +4,7 @@
 
 # create input files 
 mkdir input
-echo "Hello Docker" >input/file2.txt
+echo "Hello Docker Hello" >input/file2.txt
 echo "Hello Hadoop" >input/file1.txt
 
 # create input directory on HDFS
@@ -18,7 +18,7 @@ javac -cp $(hadoop classpath) TFIDF.java
 jar cf tfidf.jar TFIDF*.class
 
 # run TFIDF
-hadoop jar tfidf.jar TFIDF input output
+hadoop jar tfidf.jar TFIDF input termf output 
 
 # print the input files
 echo -e "\ninput file1.txt:"
