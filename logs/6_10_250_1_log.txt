@@ -1,0 +1,282 @@
+
+
+build docker hadoop image
+
+
+start hadoop-master container...
+start hadoop-slave1 container...
+start hadoop-slave2 container...
+start hadoop network...
+
+
+Starting namenodes on [hadoop-master]
+hadoop-master: Warning: Permanently added 'hadoop-master,172.18.0.2' (ECDSA) to the list of known hosts.
+
+hadoop-master: starting namenode, logging to /usr/local/hadoop/logs/hadoop-root-namenode-hadoop-master.out
+hadoop-slave1: Warning: Permanently added 'hadoop-slave1,172.18.0.3' (ECDSA) to the list of known hosts.
+
+hadoop-slave2: Warning: Permanently added 'hadoop-slave2,172.18.0.4' (ECDSA) to the list of known hosts.
+
+hadoop-slave2: starting datanode, logging to /usr/local/hadoop/logs/hadoop-root-datanode-hadoop-slave2.out
+hadoop-slave1: starting datanode, logging to /usr/local/hadoop/logs/hadoop-root-datanode-hadoop-slave1.out
+hadoop-slave5: ssh: Could not resolve hostname hadoop-slave5: Name or service not known
+
+hadoop-slave4: ssh: Could not resolve hostname hadoop-slave4: Name or service not known
+
+hadoop-slave3: ssh: Could not resolve hostname hadoop-slave3: Name or service not known
+
+Starting secondary namenodes [0.0.0.0]
+0.0.0.0: Warning: Permanently added '0.0.0.0' (ECDSA) to the list of known hosts.
+
+0.0.0.0: starting secondarynamenode, logging to /usr/local/hadoop/logs/hadoop-root-secondarynamenode-hadoop-master.out
+
+
+starting yarn daemons
+starting resourcemanager, logging to /usr/local/hadoop/logs/yarn--resourcemanager-hadoop-master.out
+hadoop-slave2: Warning: Permanently added 'hadoop-slave2,172.18.0.4' (ECDSA) to the list of known hosts.
+
+hadoop-slave1: Warning: Permanently added 'hadoop-slave1,172.18.0.3' (ECDSA) to the list of known hosts.
+
+hadoop-slave2: starting nodemanager, logging to /usr/local/hadoop/logs/yarn-root-nodemanager-hadoop-slave2.out
+hadoop-slave1: starting nodemanager, logging to /usr/local/hadoop/logs/yarn-root-nodemanager-hadoop-slave1.out
+hadoop-slave3: ssh: Could not resolve hostname hadoop-slave3: Name or service not known
+
+hadoop-slave4: ssh: Could not resolve hostname hadoop-slave4: Name or service not known
+
+hadoop-slave5: ssh: Could not resolve hostname hadoop-slave5: Name or service not known
+
+
+
+start TFIDF...
+24/01/21 20:10:11 INFO client.RMProxy: Connecting to ResourceManager at hadoop-master/172.18.0.2:8032
+24/01/21 20:10:11 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+24/01/21 20:10:11 INFO input.FileInputFormat: Total input paths to process : 40
+24/01/21 20:10:11 INFO mapreduce.JobSubmitter: number of splits:40
+24/01/21 20:10:11 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1705867800026_0001
+24/01/21 20:10:12 INFO impl.YarnClientImpl: Submitted application application_1705867800026_0001
+24/01/21 20:10:12 INFO mapreduce.Job: The url to track the job: http://hadoop-master:8088/proxy/application_1705867800026_0001/
+24/01/21 20:10:12 INFO mapreduce.Job: Running job: job_1705867800026_0001
+24/01/21 20:10:17 INFO mapreduce.Job: Job job_1705867800026_0001 running in uber mode : false
+24/01/21 20:10:17 INFO mapreduce.Job:  map 0% reduce 0%
+24/01/21 20:10:33 INFO mapreduce.Job:  map 5% reduce 0%
+24/01/21 20:10:35 INFO mapreduce.Job:  map 15% reduce 0%
+24/01/21 20:10:39 INFO mapreduce.Job:  map 20% reduce 0%
+24/01/21 20:10:40 INFO mapreduce.Job:  map 30% reduce 0%
+24/01/21 20:10:41 INFO mapreduce.Job:  map 35% reduce 0%
+24/01/21 20:10:47 INFO mapreduce.Job:  map 38% reduce 0%
+24/01/21 20:10:48 INFO mapreduce.Job:  map 40% reduce 0%
+24/01/21 20:10:49 INFO mapreduce.Job:  map 43% reduce 0%
+24/01/21 20:10:50 INFO mapreduce.Job:  map 47% reduce 0%
+24/01/21 20:10:54 INFO mapreduce.Job:  map 47% reduce 16%
+24/01/21 20:10:56 INFO mapreduce.Job:  map 50% reduce 16%
+24/01/21 20:10:59 INFO mapreduce.Job:  map 52% reduce 16%
+24/01/21 20:11:00 INFO mapreduce.Job:  map 57% reduce 16%
+24/01/21 20:11:01 INFO mapreduce.Job:  map 73% reduce 18%
+24/01/21 20:11:02 INFO mapreduce.Job:  map 80% reduce 18%
+24/01/21 20:11:04 INFO mapreduce.Job:  map 80% reduce 27%
+24/01/21 20:11:06 INFO mapreduce.Job:  map 85% reduce 27%
+24/01/21 20:11:07 INFO mapreduce.Job:  map 85% reduce 28%
+24/01/21 20:11:09 INFO mapreduce.Job:  map 93% reduce 28%
+24/01/21 20:11:10 INFO mapreduce.Job:  map 100% reduce 29%
+24/01/21 20:11:11 INFO mapreduce.Job:  map 100% reduce 100%
+24/01/21 20:11:11 INFO mapreduce.Job: Job job_1705867800026_0001 completed successfully
+24/01/21 20:11:11 INFO mapreduce.Job: Counters: 50
+	File System Counters
+		FILE: Number of bytes read=9429949
+		FILE: Number of bytes written=23664770
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=10176826
+		HDFS: Number of bytes written=8824705
+		HDFS: Number of read operations=123
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Killed map tasks=1
+		Launched map tasks=40
+		Launched reduce tasks=1
+		Data-local map tasks=40
+		Total time spent by all maps in occupied slots (ms)=584675
+		Total time spent by all reduces in occupied slots (ms)=33348
+		Total time spent by all map tasks (ms)=584675
+		Total time spent by all reduce tasks (ms)=33348
+		Total vcore-milliseconds taken by all map tasks=584675
+		Total vcore-milliseconds taken by all reduce tasks=33348
+		Total megabyte-milliseconds taken by all map tasks=598707200
+		Total megabyte-milliseconds taken by all reduce tasks=34148352
+	Map-Reduce Framework
+		Map input records=212515
+		Map output records=539117
+		Map output bytes=37798874
+		Map output materialized bytes=9430183
+		Input split bytes=6062
+		Combine input records=539117
+		Combine output records=141487
+		Reduce input groups=141487
+		Reduce shuffle bytes=9430183
+		Reduce input records=141487
+		Reduce output records=141487
+		Spilled Records=282974
+		Shuffled Maps =40
+		Failed Shuffles=0
+		Merged Map outputs=40
+		GC time elapsed (ms)=6279
+		CPU time spent (ms)=39670
+		Physical memory (bytes) snapshot=11297337344
+		Virtual memory (bytes) snapshot=34001895424
+		Total committed heap usage (bytes)=8246001664
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=10170764
+	File Output Format Counters 
+		Bytes Written=8824705
+24/01/21 20:11:11 INFO client.RMProxy: Connecting to ResourceManager at hadoop-master/172.18.0.2:8032
+24/01/21 20:11:11 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+24/01/21 20:11:11 INFO input.FileInputFormat: Total input paths to process : 1
+24/01/21 20:11:11 INFO mapreduce.JobSubmitter: number of splits:1
+24/01/21 20:11:11 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1705867800026_0002
+24/01/21 20:11:11 INFO impl.YarnClientImpl: Submitted application application_1705867800026_0002
+24/01/21 20:11:11 INFO mapreduce.Job: The url to track the job: http://hadoop-master:8088/proxy/application_1705867800026_0002/
+24/01/21 20:11:11 INFO mapreduce.Job: Running job: job_1705867800026_0002
+24/01/21 20:11:21 INFO mapreduce.Job: Job job_1705867800026_0002 running in uber mode : false
+24/01/21 20:11:21 INFO mapreduce.Job:  map 0% reduce 0%
+24/01/21 20:11:25 INFO mapreduce.Job:  map 100% reduce 0%
+24/01/21 20:11:30 INFO mapreduce.Job:  map 100% reduce 100%
+24/01/21 20:11:30 INFO mapreduce.Job: Job job_1705867800026_0002 completed successfully
+24/01/21 20:11:30 INFO mapreduce.Job: Counters: 50
+	File System Counters
+		FILE: Number of bytes read=9155421
+		FILE: Number of bytes written=18544855
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=8824824
+		HDFS: Number of bytes written=9644845
+		HDFS: Number of read operations=6
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Data-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=2354
+		Total time spent by all reduces in occupied slots (ms)=2661
+		Total time spent by all map tasks (ms)=2354
+		Total time spent by all reduce tasks (ms)=2661
+		Total vcore-milliseconds taken by all map tasks=2354
+		Total vcore-milliseconds taken by all reduce tasks=2661
+		Total megabyte-milliseconds taken by all map tasks=2410496
+		Total megabyte-milliseconds taken by all reduce tasks=2724864
+	Map-Reduce Framework
+		Map input records=141487
+		Map output records=141487
+		Map output bytes=8848573
+		Map output materialized bytes=9155421
+		Input split bytes=119
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=40
+		Reduce shuffle bytes=9155421
+		Reduce input records=141487
+		Reduce output records=141487
+		Spilled Records=282974
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=100
+		CPU time spent (ms)=3750
+		Physical memory (bytes) snapshot=492605440
+		Virtual memory (bytes) snapshot=1701912576
+		Total committed heap usage (bytes)=386400256
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	TFIDF$Counters
+		DOCUMENTS=40
+	File Input Format Counters 
+		Bytes Read=8824705
+	File Output Format Counters 
+		Bytes Written=9644845
+24/01/21 20:11:30 INFO client.RMProxy: Connecting to ResourceManager at hadoop-master/172.18.0.2:8032
+24/01/21 20:11:30 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+24/01/21 20:11:30 INFO input.FileInputFormat: Total input paths to process : 1
+24/01/21 20:11:30 INFO mapreduce.JobSubmitter: number of splits:1
+24/01/21 20:11:30 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1705867800026_0003
+24/01/21 20:11:30 INFO impl.YarnClientImpl: Submitted application application_1705867800026_0003
+24/01/21 20:11:30 INFO mapreduce.Job: The url to track the job: http://hadoop-master:8088/proxy/application_1705867800026_0003/
+24/01/21 20:11:30 INFO mapreduce.Job: Running job: job_1705867800026_0003
+24/01/21 20:11:40 INFO mapreduce.Job: Job job_1705867800026_0003 running in uber mode : false
+24/01/21 20:11:40 INFO mapreduce.Job:  map 0% reduce 0%
+24/01/21 20:11:45 INFO mapreduce.Job:  map 100% reduce 0%
+24/01/21 20:11:52 INFO mapreduce.Job:  map 100% reduce 100%
+24/01/21 20:11:52 INFO mapreduce.Job: Job job_1705867800026_0003 completed successfully
+24/01/21 20:11:52 INFO mapreduce.Job: Counters: 49
+	File System Counters
+		FILE: Number of bytes read=9975561
+		FILE: Number of bytes written=20185453
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=9644968
+		HDFS: Number of bytes written=12525377
+		HDFS: Number of read operations=6
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Data-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=2492
+		Total time spent by all reduces in occupied slots (ms)=4190
+		Total time spent by all map tasks (ms)=2492
+		Total time spent by all reduce tasks (ms)=4190
+		Total vcore-milliseconds taken by all map tasks=2492
+		Total vcore-milliseconds taken by all reduce tasks=4190
+		Total megabyte-milliseconds taken by all map tasks=2551808
+		Total megabyte-milliseconds taken by all reduce tasks=4290560
+	Map-Reduce Framework
+		Map input records=141487
+		Map output records=141487
+		Map output bytes=9668713
+		Map output materialized bytes=9975561
+		Input split bytes=123
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=40829
+		Reduce shuffle bytes=9975561
+		Reduce input records=141487
+		Reduce output records=141487
+		Spilled Records=282974
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=185
+		CPU time spent (ms)=5230
+		Physical memory (bytes) snapshot=485572608
+		Virtual memory (bytes) snapshot=1674424320
+		Total committed heap usage (bytes)=396361728
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=9644845
+	File Output Format Counters 
+		Bytes Written=12525377
+--TIME1:60608 ms--
+--TIME2:19497 ms--
+--TIME3:21367 ms--
