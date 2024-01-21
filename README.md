@@ -25,4 +25,6 @@ The contents of the ```/etc/docker/daemon.json``` were as follows:
 }
 
 ```
+You can view the coresponding ```log``` files in the ```logs``` directory.
 Precise execution times were as follows:
+s
