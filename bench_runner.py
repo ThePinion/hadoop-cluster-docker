@@ -2,8 +2,6 @@ import os
 import shutil
 import subprocess
 import re
-import random
-import string
 
 BOOKS_DIR = "books"
 BOOKS_TEMP_DIR = "books_temp"
