@@ -45,7 +45,7 @@ RUN mv /tmp/ssh_config ~/.ssh/config && \
     mv /tmp/run-tfidf.sh ~/run-tfidf.sh && \
     mv /tmp/TFIDF.java ~/TFIDF.java 
 
-COPY books/* /input/
+COPY books_temp/* /input/
 
 RUN mv /input/ ~/input/ 
 

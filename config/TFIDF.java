@@ -25,9 +25,29 @@ public class TFIDF {
     Path documentFrequency = new Path(args[2]);
     Path output = new Path(args[3]);
 
-    termFrequency(input, termFrequency);
-    long numDocuments = documentFrequency(termFrequency, documentFrequency);
-    termFrequencyInverseDocumentFrequency(documentFrequency, output, numDocuments);
+    int numMappers = Integer.parseInt(args[4]);
+    int numReducers = Integer.parseInt(args[5]);
+    Configuration conf = new Configuration();
+    if (numMappers != 0) {
+      conf.set("mapreduce.job.maps", Integer.toString(numMappers));
+    }
+    if (numReducers != 0) {
+      conf.set("mapreduce.job.reduces", Integer.toString(numReducers));
+    }
+    Configuration tfConf = new Configuration(conf);
+    Configuration dfConf = new Configuration(conf);
+    Configuration tfidfConf = new Configuration(conf);
+
+    long startTF = System.currentTimeMillis();
+    termFrequency(input, termFrequency, tfConf);
+    long startDF = System.currentTimeMillis();
+    long numDocuments = documentFrequency(termFrequency, documentFrequency, dfConf);
+    long startTFIDF = System.currentTimeMillis();
+    termFrequencyInverseDocumentFrequency(documentFrequency, output, numDocuments, tfidfConf);
+    long end = System.currentTimeMillis();
+    System.out.println("--TIME1:" + (startDF - startTF) + " ms--");
+    System.out.println("--TIME2:" + (startTFIDF - startDF) + " ms--");
+    System.out.println("--TIME3:" + (end - startTFIDF) + " ms--");
     System.exit(0);
   }
 
@@ -35,8 +55,8 @@ public class TFIDF {
     DOCUMENTS,
   }
 
-  public static void termFrequency(Path input, Path output) throws Exception {
-    Job job = Job.getInstance(new Configuration(), "Term Frequency");
+  public static void termFrequency(Path input, Path output, Configuration conf) throws Exception {
+    Job job = Job.getInstance(conf, "Term Frequency");
     job.setJarByClass(TFIDF.class);
     job.setMapperClass(TFMapper.class); // Replace with your TFMapper class
     job.setCombinerClass(TFReducer.class); // Replace with your TFReducer class
@@ -96,8 +116,8 @@ public class TFIDF {
     }
   }
 
-  public static long documentFrequency(Path input, Path output) throws Exception {
-    Job job = Job.getInstance(new Configuration(), "Document Frequency");
+  public static long documentFrequency(Path input, Path output, Configuration conf) throws Exception {
+    Job job = Job.getInstance(conf, "Document Frequency");
     job.setJarByClass(TFIDF.class);
     job.setMapperClass(DFMapper.class); // Replace with your DFMapper class
     job.setReducerClass(DFReducer.class); // Replace with your DFReducer class
@@ -157,10 +177,10 @@ public class TFIDF {
   }
 
   public static void termFrequencyInverseDocumentFrequency(
-    Path input, Path output, long numDocuments
+    Path input, Path output, long numDocuments, Configuration conf
   ) throws Exception {
     Job job = Job.getInstance(
-      new Configuration(), 
+      conf, 
       "Term Frequency Inverse Document Frequency"
     );
     job.getConfiguration().setLong("custom.numDocuments", numDocuments);
