@@ -25,8 +25,8 @@ public class TFIDF {
     Path documentFrequency = new Path(args[2]);
     Path output = new Path(args[3]);
 
-    long numDocuments = termFrequency(input, termFrequency);
-    documentFrequency(termFrequency, documentFrequency);
+    termFrequency(input, termFrequency);
+    long numDocuments = documentFrequency(termFrequency, documentFrequency);
     termFrequencyInverseDocumentFrequency(documentFrequency, output, numDocuments);
     System.exit(0);
   }
@@ -35,7 +35,7 @@ public class TFIDF {
     DOCUMENTS,
   }
 
-  public static long termFrequency(Path input, Path output) throws Exception {
+  public static void termFrequency(Path input, Path output) throws Exception {
     Job job = Job.getInstance(new Configuration(), "Term Frequency");
     job.setJarByClass(TFIDF.class);
     job.setMapperClass(TFMapper.class); // Replace with your TFMapper class
@@ -49,8 +49,6 @@ public class TFIDF {
     if (!job.waitForCompletion(true)) {
       System.exit(1);
     }
-    long numDocuments = job.getCounters().findCounter(TFIDF.Counters.DOCUMENTS).getValue();
-    return numDocuments;
   }
 
   // DocumentId, [words] => (word#documentId, 1)
@@ -69,7 +67,6 @@ public class TFIDF {
     public void map(
       Object key, Text value, Context context
     ) throws IOException, InterruptedException {
-      context.getCounter(TFIDF.Counters.DOCUMENTS).increment(1);
       StringTokenizer itr = new StringTokenizer(value.toString());
       while (itr.hasMoreTokens()) {
         String w = itr.nextToken();
@@ -99,7 +96,7 @@ public class TFIDF {
     }
   }
 
-  public static void documentFrequency(Path input, Path output) throws Exception {
+  public static long documentFrequency(Path input, Path output) throws Exception {
     Job job = Job.getInstance(new Configuration(), "Document Frequency");
     job.setJarByClass(TFIDF.class);
     job.setMapperClass(DFMapper.class); // Replace with your DFMapper class
@@ -112,6 +109,8 @@ public class TFIDF {
     if (!job.waitForCompletion(true)) {
       System.exit(1);
     }
+    long numDocuments = job.getCounters().findCounter(TFIDF.Counters.DOCUMENTS).getValue();
+    return numDocuments;
   }
 
   // (word#documentId, count) => (documentId, word=count)
@@ -139,6 +138,7 @@ public class TFIDF {
     private Text wordCountDivDocCount = new Text();
 
     public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
+      context.getCounter(TFIDF.Counters.DOCUMENTS).increment(1);
       int documentSize = 0;
       Map<String, Integer> counts = new HashMap<String, Integer>();
       for (Text val : values) {
