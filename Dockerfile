@@ -45,6 +45,10 @@ RUN mv /tmp/ssh_config ~/.ssh/config && \
     mv /tmp/run-tfidf.sh ~/run-tfidf.sh && \
     mv /tmp/TFIDF.java ~/TFIDF.java 
 
+COPY books/* /input/
+
+RUN mv /input/ ~/input/ 
+
 RUN chmod +x ~/start-hadoop.sh && \
     chmod +x ~/run-wordcount.sh && \
     chmod +x ~/run-tfidf.sh && \

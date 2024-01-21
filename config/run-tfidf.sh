@@ -3,9 +3,9 @@
 # test the hadoop cluster by running TFIDF
 
 # create input files 
-mkdir input
-echo "Hello Docker Hello the a the" >input/file2.txt
-echo "Hello Hadoop" >input/file1.txt
+# mkdir input
+# echo "Hello Docker Hello the a the" >input/file2.txt
+# echo "Hello Hadoop" >input/file1.txt
 
 # create input directory on HDFS
 hadoop fs -mkdir -p input
@@ -21,11 +21,11 @@ jar cf tfidf.jar TFIDF*.class
 hadoop jar tfidf.jar TFIDF input termf documentf output 
 
 # print the input files
-echo -e "\ninput file1.txt:"
-hdfs dfs -cat input/file1.txt
+# echo -e "\ninput file1.txt:"
+# hdfs dfs -cat input/file1.txt
 
-echo -e "\ninput file2.txt:"
-hdfs dfs -cat input/file2.txt
+# echo -e "\ninput file2.txt:"
+# hdfs dfs -cat input/file2.txt
 
 # print the output of TFIDF
 echo -e "\ntfidf output:"
