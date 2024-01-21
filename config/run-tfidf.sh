@@ -4,7 +4,7 @@
 
 # create input files 
 mkdir input
-echo "Hello Docker Hello" >input/file2.txt
+echo "Hello Docker Hello the a the" >input/file2.txt
 echo "Hello Hadoop" >input/file1.txt
 
 # create input directory on HDFS
